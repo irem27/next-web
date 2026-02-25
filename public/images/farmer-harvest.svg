@@ -1,0 +1,89 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient - golden hour -->
+  <rect width="800" height="600" fill="url(#sunset-gradient)"/>
+  <defs>
+    <linearGradient id="sunset-gradient" x1="800" y1="0" x2="0" y2="600">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="30%" stop-color="#FFA500"/>
+      <stop offset="60%" stop-color="#4A7C4E"/>
+      <stop offset="100%" stop-color="#2D5A2D"/>
+    </linearGradient>
+    <radialGradient id="sun-glow" cx="85%" cy="20%">
+      <stop offset="0%" stop-color="#FFFACD" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#FFD700" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#FFD700" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Sun glow -->
+  <rect width="800" height="600" fill="url(#sun-glow)"/>
+  
+  <!-- Rice field rows -->
+  <g fill="#4A7C4E">
+    <path d="M0 450 Q100 430 200 450 Q300 470 400 445 Q500 420 600 450 Q700 480 800 455 L800 600 L0 600 Z"/>
+  </g>
+  <g fill="#5A8F5E" opacity="0.8">
+    <path d="M0 480 Q150 460 300 480 Q450 500 600 475 Q750 450 800 480 L800 600 L0 600 Z"/>
+  </g>
+  <g fill="#3D6B40" opacity="0.6">
+    <path d="M0 520 Q200 500 400 520 Q600 540 800 515 L800 600 L0 600 Z"/>
+  </g>
+  
+  <!-- Water reflections -->
+  <rect x="50" y="520" width="200" height="30" fill="#87CEEB" opacity="0.3" rx="5"/>
+  <rect x="300" y="540" width="150" height="20" fill="#87CEEB" opacity="0.2" rx="5"/>
+  <rect x="500" y="530" width="180" height="25" fill="#87CEEB" opacity="0.25" rx="5"/>
+  
+  <!-- Rice plants -->
+  <g stroke="#2D5A2D" stroke-width="2" fill="none">
+    <path d="M100 600 Q110 550 105 500"/>
+    <path d="M120 600 Q125 540 118 490"/>
+    <path d="M250 600 Q245 530 255 480"/>
+    <path d="M350 600 Q360 550 355 510"/>
+    <path d="M450 600 Q440 540 448 495"/>
+    <path d="M550 600 Q560 535 552 490"/>
+    <path d="M650 600 Q645 545 655 500"/>
+    <path d="M750 600 Q760 550 752 510"/>
+  </g>
+  
+  <!-- Farmer silhouette -->
+  <g transform="translate(350, 320)">
+    <!-- Hat -->
+    <ellipse cx="50" cy="0" rx="45" ry="12" fill="#D4A853"/>
+    <ellipse cx="50" cy="-5" rx="30" ry="20" fill="#C4984A"/>
+    <path d="M20 -5 Q50 -30 80 -5" fill="#B8894A"/>
+    
+    <!-- Head -->
+    <circle cx="50" cy="25" r="22" fill="#8B7355"/>
+    
+    <!-- Body -->
+    <path d="M30 45 L25 120 L40 120 L50 80 L60 120 L75 120 L70 45 Z" fill="#4A3728"/>
+    
+    <!-- Arms reaching down -->
+    <path d="M30 55 Q10 90 -20 130 Q-25 140 -15 145 L20 110" fill="#8B7355"/>
+    <path d="M70 55 Q90 90 120 130 Q125 140 115 145 L80 110" fill="#8B7355"/>
+    
+    <!-- Hands -->
+    <circle cx="-15" cy="145" r="8" fill="#8B7355"/>
+    <circle cx="115" cy="145" r="8" fill="#8B7355"/>
+  </g>
+  
+  <!-- Light rays -->
+  <g stroke="#FFD700" stroke-width="1" opacity="0.3">
+    <line x1="700" y1="100" x2="500" y2="400"/>
+    <line x1="720" y1="80" x2="550" y2="350"/>
+    <line x1="750" y1="120" x2="600" y2="380"/>
+    <line x1="680" y1="60" x2="480" y2="320"/>
+  </g>
+  
+  <!-- Floating particles (dust/pollen in sunlight) -->
+  <g fill="#FFD700" opacity="0.6">
+    <circle cx="600" cy="200" r="2"/>
+    <circle cx="650" cy="250" r="1.5"/>
+    <circle cx="580" cy="280" r="2"/>
+    <circle cx="700" cy="180" r="1"/>
+    <circle cx="620" cy="320" r="2.5"/>
+    <circle cx="550" cy="220" r="1.5"/>
+    <circle cx="680" cy="300" r="2"/>
+  </g>
+</svg>

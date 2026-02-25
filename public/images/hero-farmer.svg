@@ -1,0 +1,21 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="url(#gradient)"/>
+  <defs>
+    <linearGradient id="gradient" x1="0" y1="0" x2="800" y2="600">
+      <stop offset="0%" stop-color="#D4A853"/>
+      <stop offset="50%" stop-color="#8B7355"/>
+      <stop offset="100%" stop-color="#2D4A3E"/>
+    </linearGradient>
+  </defs>
+  <!-- Rice field silhouette -->
+  <path d="M0 400 Q100 380 200 400 Q300 420 400 390 Q500 360 600 400 Q700 440 800 410 L800 600 L0 600 Z" fill="#1a4d1a" opacity="0.6"/>
+  <path d="M0 450 Q150 430 300 450 Q450 470 600 440 Q750 410 800 450 L800 600 L0 600 Z" fill="#2d5a2d" opacity="0.7"/>
+  <!-- Sun glow -->
+  <circle cx="650" cy="200" r="80" fill="#FFD700" opacity="0.4"/>
+  <circle cx="650" cy="200" r="50" fill="#FFA500" opacity="0.6"/>
+  <!-- Farmer silhouette -->
+  <ellipse cx="400" cy="380" rx="40" ry="15" fill="#1a1a1a" opacity="0.3"/>
+  <path d="M380 380 L385 340 L395 300 L405 300 L415 340 L420 380" fill="#4a3728"/>
+  <circle cx="400" cy="290" r="20" fill="#4a3728"/>
+  <ellipse cx="400" cy="280" rx="25" ry="10" fill="#d4a853"/>
+</svg>

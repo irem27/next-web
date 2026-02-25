@@ -1,0 +1,62 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Sky - sunset/golden hour -->
+  <rect width="400" height="150" fill="url(#sunset-sky)"/>
+  <defs>
+    <linearGradient id="sunset-sky" x1="0" y1="0" x2="0" y2="150">
+      <stop offset="0%" stop-color="#FDB813"/>
+      <stop offset="50%" stop-color="#F5A623"/>
+      <stop offset="100%" stop-color="#E8941C"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Sun -->
+  <circle cx="200" cy="80" r="50" fill="#FFD54F" opacity="0.8"/>
+  <circle cx="200" cy="80" r="35" fill="#FFEB3B" opacity="0.9"/>
+  
+  <!-- Field - golden rice -->
+  <rect y="140" width="400" height="160" fill="#DAA520"/>
+  
+  <!-- Rice stalks - silhouette style -->
+  <g fill="#B8860B">
+    <!-- Left side -->
+    <path d="M0 300 L20 300 L25 180 Q30 160 25 140 L15 140 Q10 160 15 180 Z"/>
+    <path d="M30 300 L50 300 L55 190 Q60 170 55 150 L45 150 Q40 170 45 190 Z"/>
+    <path d="M60 300 L80 300 L85 185 Q90 165 85 145 L75 145 Q70 165 75 185 Z"/>
+    
+    <!-- Center -->
+    <path d="M150 300 L170 300 L175 170 Q180 150 175 130 L165 130 Q160 150 165 170 Z"/>
+    <path d="M180 300 L200 300 L205 165 Q210 145 205 125 L195 125 Q190 145 195 165 Z"/>
+    <path d="M210 300 L230 300 L235 170 Q240 150 235 130 L225 130 Q220 150 225 170 Z"/>
+    
+    <!-- Right side -->
+    <path d="M320 300 L340 300 L345 185 Q350 165 345 145 L335 145 Q330 165 335 185 Z"/>
+    <path d="M350 300 L370 300 L375 180 Q380 160 375 140 L365 140 Q360 160 365 180 Z"/>
+    <path d="M380 300 L400 300 L400 175 Q395 155 400 135 L390 135 Q385 155 390 175 Z"/>
+  </g>
+  
+  <!-- Rice grain heads -->
+  <g fill="#F4D03F">
+    <ellipse cx="20" cy="135" rx="8" ry="15" transform="rotate(-10 20 135)"/>
+    <ellipse cx="50" cy="145" rx="8" ry="15" transform="rotate(5 50 145)"/>
+    <ellipse cx="80" cy="140" rx="8" ry="15" transform="rotate(-5 80 140)"/>
+    
+    <ellipse cx="165" cy="125" rx="10" ry="18" transform="rotate(-8 165 125)"/>
+    <ellipse cx="200" cy="120" rx="10" ry="18" transform="rotate(3 200 120)"/>
+    <ellipse cx="235" cy="125" rx="10" ry="18" transform="rotate(8 235 125)"/>
+    
+    <ellipse cx="340" cy="140" rx="8" ry="15" transform="rotate(10 340 140)"/>
+    <ellipse cx="370" cy="135" rx="8" ry="15" transform="rotate(-5 370 135)"/>
+    <ellipse cx="395" cy="130" rx="8" ry="15" transform="rotate(5 395 130)"/>
+  </g>
+  
+  <!-- Light rays from sun -->
+  <g stroke="#FFD54F" stroke-width="2" opacity="0.4">
+    <line x1="200" y1="80" x2="100" y2="200"/>
+    <line x1="200" y1="80" x2="150" y2="220"/>
+    <line x1="200" y1="80" x2="250" y2="220"/>
+    <line x1="200" y1="80" x2="300" y2="200"/>
+  </g>
+  
+  <!-- Warm overlay -->
+  <rect width="400" height="300" fill="#FF8C00" opacity="0.1"/>
+</svg>

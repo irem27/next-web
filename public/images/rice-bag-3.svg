@@ -1,0 +1,77 @@
+<svg width="300" height="400" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Shadow -->
+  <ellipse cx="150" cy="385" rx="80" ry="15" fill="#000" opacity="0.1"/>
+  
+  <!-- Rice bag body -->
+  <path d="M62 82 L62 352 Q62 370 80 370 L220 370 Q238 370 238 352 L238 82 Q238 62 220 56 L80 56 Q62 62 62 82 Z" fill="url(#bag-gradient-3)"/>
+  
+  <defs>
+    <linearGradient id="bag-gradient-3" x1="62" y1="0" x2="238" y2="400">
+      <stop offset="0%" stop-color="#F8F6EE"/>
+      <stop offset="20%" stop-color="#F2EFE4"/>
+      <stop offset="45%" stop-color="#EBE7DA"/>
+      <stop offset="70%" stop-color="#E3DFCF"/>
+      <stop offset="100%" stop-color="#D5D1C2"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Bag weave texture -->
+  <g stroke="#CCC8B8" stroke-width="0.3" opacity="0.5">
+    <line x1="82" y1="60" x2="82" y2="367"/>
+    <line x1="102" y1="58" x2="102" y2="369"/>
+    <line x1="122" y1="57" x2="122" y2="370"/>
+    <line x1="142" y1="56" x2="142" y2="370"/>
+    <line x1="162" y1="56" x2="162" y2="370"/>
+    <line x1="182" y1="57" x2="182" y2="370"/>
+    <line x1="202" y1="58" x2="202" y2="369"/>
+    <line x1="222" y1="60" x2="222" y2="367"/>
+  </g>
+  
+  <!-- Horizontal weave lines -->
+  <g stroke="#CCC8B8" stroke-width="0.2" opacity="0.3">
+    <line x1="62" y1="100" x2="238" y2="100"/>
+    <line x1="62" y1="150" x2="238" y2="150"/>
+    <line x1="62" y1="200" x2="238" y2="200"/>
+    <line x1="62" y1="250" x2="238" y2="250"/>
+    <line x1="62" y1="300" x2="238" y2="300"/>
+    <line x1="62" y1="350" x2="238" y2="350"/>
+  </g>
+  
+  <!-- Bag top fold -->
+  <path d="M57 56 Q82 40 150 36 Q218 40 243 56 L238 82 Q218 66 150 61 Q82 66 62 82 Z" fill="#E3DFCF"/>
+  <path d="M57 56 Q82 40 150 36 Q218 40 243 56" stroke="#C4C0B0" stroke-width="1" fill="none"/>
+  
+  <!-- Twisted top -->
+  <path d="M122 36 Q132 16 150 10 Q168 16 178 36" fill="#D5D1C2"/>
+  <path d="M126 30 Q140 20 150 18 Q160 20 174 30" stroke="#B2AEA0" stroke-width="1" fill="none"/>
+  
+  <!-- Tie/ribbon -->
+  <rect x="141" y="24" width="18" height="8" rx="2" fill="#F2EFE4"/>
+  <line x1="145" y1="28" x2="155" y2="28" stroke="#C9A54F" stroke-width="1"/>
+  
+  <!-- Rice content visible -->
+  <g fill="#FFFCF2" opacity="0.35">
+    <ellipse cx="95" cy="140" rx="7" ry="11" transform="rotate(-12 95 140)"/>
+    <ellipse cx="125" cy="165" rx="6" ry="10" transform="rotate(8 125 165)"/>
+    <ellipse cx="160" cy="145" rx="7" ry="11" transform="rotate(-3 160 145)"/>
+    <ellipse cx="195" cy="175" rx="6" ry="10" transform="rotate(15 195 175)"/>
+    <ellipse cx="108" cy="225" rx="7" ry="11" transform="rotate(-8 108 225)"/>
+    <ellipse cx="148" cy="205" rx="6" ry="10" transform="rotate(3 148 205)"/>
+    <ellipse cx="182" cy="245" rx="7" ry="11" transform="rotate(-6 182 245)"/>
+    <ellipse cx="135" cy="285" rx="6" ry="10" transform="rotate(10 135 285)"/>
+    <ellipse cx="170" cy="305" rx="7" ry="11" transform="rotate(-12 170 305)"/>
+    <ellipse cx="118" cy="335" rx="6" ry="10" transform="rotate(5 118 335)"/>
+    <ellipse cx="158" cy="345" rx="7" ry="11" transform="rotate(-4 158 345)"/>
+    <ellipse cx="195" cy="330" rx="6" ry="10" transform="rotate(8 195 330)"/>
+  </g>
+  
+  <!-- Side creases -->
+  <path d="M62 110 Q58 215 62 320" stroke="#C4C0B0" stroke-width="0.6" fill="none" opacity="0.5"/>
+  <path d="M238 110 Q242 215 238 320" stroke="#C4C0B0" stroke-width="0.6" fill="none" opacity="0.5"/>
+  
+  <!-- Center fold hint -->
+  <path d="M150 100 L150 340" stroke="#D8D4C5" stroke-width="0.5" fill="none" opacity="0.3"/>
+  
+  <!-- Bottom fold -->
+  <path d="M62 352 Q82 360 150 364 Q218 360 238 352" stroke="#B2AEA0" stroke-width="1" fill="none"/>
+</svg>

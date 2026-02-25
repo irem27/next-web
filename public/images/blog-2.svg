@@ -1,0 +1,45 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background - green field -->
+  <rect width="400" height="300" fill="#4CAF50"/>
+  
+  <!-- Field depth -->
+  <rect y="0" width="400" height="100" fill="#66BB6A"/>
+  <rect y="100" width="400" height="100" fill="#4CAF50"/>
+  <rect y="200" width="400" height="100" fill="#388E3C"/>
+  
+  <!-- Rice plants -->
+  <g stroke="#2E7D32" stroke-width="2" fill="none">
+    <path d="M50 300 Q55 250 50 200 Q60 150 55 100"/>
+    <path d="M100 300 Q105 260 100 220 Q110 180 105 140"/>
+    <path d="M150 300 Q155 255 150 210 Q160 165 155 120"/>
+    <path d="M200 300 Q205 250 200 200 Q210 150 205 100"/>
+    <path d="M250 300 Q255 260 250 220 Q260 180 255 140"/>
+    <path d="M300 300 Q305 255 300 210 Q310 165 305 120"/>
+    <path d="M350 300 Q355 250 350 200 Q360 150 355 100"/>
+  </g>
+  
+  <!-- Hand reaching into field -->
+  <path d="M150 280 Q180 250 200 220 Q220 200 250 190" fill="#D4AA7D" stroke="#C49A6C" stroke-width="3"/>
+  <ellipse cx="260" cy="185" rx="25" ry="18" fill="#D4AA7D"/>
+  
+  <!-- Fingers -->
+  <path d="M275 175 Q290 165 295 155 Q298 165 285 178" fill="#D4AA7D"/>
+  <path d="M280 180 Q300 175 308 168 Q308 178 290 185" fill="#C49A6C"/>
+  <path d="M278 188 Q298 188 310 185 Q305 195 285 195" fill="#D4AA7D"/>
+  
+  <!-- Some rice grains being picked -->
+  <g fill="#F5F5DC">
+    <ellipse cx="265" cy="178" rx="3" ry="6" transform="rotate(-10 265 178)"/>
+    <ellipse cx="275" cy="175" rx="3" ry="6" transform="rotate(15 275 175)"/>
+    <ellipse cx="270" cy="185" rx="3" ry="6" transform="rotate(-5 270 185)"/>
+  </g>
+  
+  <!-- Sunlight effect -->
+  <rect width="400" height="300" fill="url(#sun-effect)" opacity="0.3"/>
+  <defs>
+    <radialGradient id="sun-effect" cx="80%" cy="10%">
+      <stop offset="0%" stop-color="#FFEB3B"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+  </defs>
+</svg>

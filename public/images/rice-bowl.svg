@@ -1,0 +1,56 @@
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background - Rice field -->
+  <rect width="800" height="500" fill="url(#field-gradient)"/>
+  <defs>
+    <linearGradient id="field-gradient" x1="0" y1="0" x2="0" y2="500">
+      <stop offset="0%" stop-color="#87CEEB"/>
+      <stop offset="30%" stop-color="#98D4A0"/>
+      <stop offset="100%" stop-color="#4A7C4E"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Blurred rice field background -->
+  <rect y="150" width="800" height="350" fill="#5A8F5E" opacity="0.7"/>
+  <ellipse cx="200" cy="300" rx="150" ry="80" fill="#4A7C4E" opacity="0.5"/>
+  <ellipse cx="600" cy="320" rx="180" ry="90" fill="#6B9F6F" opacity="0.5"/>
+  
+  <!-- Wooden table surface -->
+  <rect y="350" width="800" height="150" fill="#8B7355"/>
+  <rect y="350" width="800" height="10" fill="#6B5344"/>
+  <line x1="0" y1="380" x2="800" y2="380" stroke="#9C8465" stroke-width="2"/>
+  <line x1="0" y1="420" x2="800" y2="420" stroke="#7A6352" stroke-width="1"/>
+  <line x1="0" y1="460" x2="800" y2="460" stroke="#9C8465" stroke-width="2"/>
+  
+  <!-- Bowl shadow -->
+  <ellipse cx="350" cy="410" rx="120" ry="30" fill="#5A4535" opacity="0.3"/>
+  
+  <!-- Wooden bowl -->
+  <ellipse cx="350" cy="380" rx="100" ry="40" fill="#6B4423"/>
+  <ellipse cx="350" cy="370" rx="90" ry="35" fill="#8B5A2B"/>
+  <ellipse cx="350" cy="360" rx="85" ry="32" fill="#A0522D"/>
+  
+  <!-- Rice in bowl -->
+  <ellipse cx="350" cy="350" rx="80" ry="28" fill="#FFF8DC"/>
+  <ellipse cx="350" cy="340" rx="70" ry="20" fill="#FFFACD"/>
+  
+  <!-- Rice grains detail -->
+  <g fill="#F5F5DC">
+    <ellipse cx="320" cy="335" rx="4" ry="8" transform="rotate(-15 320 335)"/>
+    <ellipse cx="340" cy="330" rx="4" ry="8" transform="rotate(10 340 330)"/>
+    <ellipse cx="360" cy="332" rx="4" ry="8" transform="rotate(-5 360 332)"/>
+    <ellipse cx="380" cy="338" rx="4" ry="8" transform="rotate(20 380 338)"/>
+    <ellipse cx="330" cy="345" rx="4" ry="8" transform="rotate(-10 330 345)"/>
+    <ellipse cx="355" cy="342" rx="4" ry="8" transform="rotate(15 355 342)"/>
+    <ellipse cx="370" cy="348" rx="4" ry="8" transform="rotate(-8 370 348)"/>
+  </g>
+  
+  <!-- Rice grains scattered on table -->
+  <g fill="#FFF8DC">
+    <ellipse cx="180" cy="400" rx="3" ry="7" transform="rotate(-30 180 400)"/>
+    <ellipse cx="200" cy="420" rx="3" ry="7" transform="rotate(15 200 420)"/>
+    <ellipse cx="220" cy="395" rx="3" ry="7" transform="rotate(-45 220 395)"/>
+    <ellipse cx="500" cy="410" rx="3" ry="7" transform="rotate(25 500 410)"/>
+    <ellipse cx="520" cy="430" rx="3" ry="7" transform="rotate(-20 520 430)"/>
+    <ellipse cx="480" cy="420" rx="3" ry="7" transform="rotate(40 480 420)"/>
+  </g>
+</svg>

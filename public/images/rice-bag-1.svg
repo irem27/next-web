@@ -1,0 +1,59 @@
+<svg width="300" height="400" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Shadow -->
+  <ellipse cx="150" cy="385" rx="80" ry="15" fill="#000" opacity="0.1"/>
+  
+  <!-- Rice bag body -->
+  <path d="M60 80 L60 350 Q60 370 80 370 L220 370 Q240 370 240 350 L240 80 Q240 60 220 55 L80 55 Q60 60 60 80 Z" fill="url(#bag-gradient-1)"/>
+  
+  <defs>
+    <linearGradient id="bag-gradient-1" x1="60" y1="0" x2="240" y2="400">
+      <stop offset="0%" stop-color="#F5F5DC"/>
+      <stop offset="30%" stop-color="#FFFACD"/>
+      <stop offset="50%" stop-color="#F5F5DC"/>
+      <stop offset="70%" stop-color="#E8E4C9"/>
+      <stop offset="100%" stop-color="#D4CDB0"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Bag texture lines -->
+  <g stroke="#D4CDB0" stroke-width="0.5" opacity="0.5">
+    <line x1="80" y1="60" x2="80" y2="365"/>
+    <line x1="100" y1="58" x2="100" y2="368"/>
+    <line x1="120" y1="56" x2="120" y2="369"/>
+    <line x1="140" y1="55" x2="140" y2="370"/>
+    <line x1="160" y1="55" x2="160" y2="370"/>
+    <line x1="180" y1="56" x2="180" y2="369"/>
+    <line x1="200" y1="58" x2="200" y2="368"/>
+    <line x1="220" y1="60" x2="220" y2="365"/>
+  </g>
+  
+  <!-- Bag top fold -->
+  <path d="M55 55 Q80 40 150 35 Q220 40 245 55 L240 80 Q220 65 150 60 Q80 65 60 80 Z" fill="#E8E4C9"/>
+  <path d="M55 55 Q80 40 150 35 Q220 40 245 55" stroke="#C4BDA0" stroke-width="1" fill="none"/>
+  
+  <!-- Twisted top -->
+  <path d="M120 35 Q130 15 150 10 Q170 15 180 35" fill="#D4CDB0"/>
+  <path d="M125 30 Q140 20 150 18 Q160 20 175 30" stroke="#B8B199" stroke-width="1" fill="none"/>
+  
+  <!-- Tie/ribbon -->
+  <rect x="140" y="25" width="20" height="8" rx="2" fill="#FFFACD"/>
+  <line x1="145" y1="29" x2="155" y2="29" stroke="#D4A853" stroke-width="1"/>
+  
+  <!-- Rice visible through bag (subtle) -->
+  <g fill="#FFFACD" opacity="0.3">
+    <circle cx="100" cy="200" r="15"/>
+    <circle cx="130" cy="180" r="12"/>
+    <circle cx="160" cy="220" r="18"/>
+    <circle cx="190" cy="190" r="14"/>
+    <circle cx="200" cy="250" r="16"/>
+    <circle cx="120" cy="280" r="13"/>
+    <circle cx="170" cy="300" r="15"/>
+  </g>
+  
+  <!-- Side folds/creases -->
+  <path d="M60 100 Q55 200 60 300" stroke="#C4BDA0" stroke-width="1" fill="none" opacity="0.5"/>
+  <path d="M240 100 Q245 200 240 300" stroke="#C4BDA0" stroke-width="1" fill="none" opacity="0.5"/>
+  
+  <!-- Bottom fold -->
+  <path d="M60 350 Q80 360 150 365 Q220 360 240 350" stroke="#B8B199" stroke-width="1" fill="none"/>
+</svg>

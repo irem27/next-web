@@ -1,0 +1,64 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background - warm earth tones -->
+  <rect width="400" height="300" fill="url(#earth-bg)"/>
+  <defs>
+    <linearGradient id="earth-bg" x1="0" y1="0" x2="400" y2="300">
+      <stop offset="0%" stop-color="#D2B48C"/>
+      <stop offset="50%" stop-color="#C4A67C"/>
+      <stop offset="100%" stop-color="#8B7355"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Hands cupping shape (simplified) -->
+  <ellipse cx="200" cy="200" rx="120" ry="80" fill="#C49A6C"/>
+  <ellipse cx="200" cy="190" rx="100" ry="65" fill="#D4AA7D"/>
+  
+  <!-- Fingers left hand -->
+  <path d="M80 180 Q70 150 85 120 Q95 100 100 120 Q105 150 100 180" fill="#C49A6C"/>
+  <path d="M100 170 Q95 140 105 110 Q115 90 120 115 Q125 145 115 175" fill="#D4AA7D"/>
+  <path d="M115 165 Q115 135 125 105 Q135 85 140 110 Q145 140 135 170" fill="#C49A6C"/>
+  
+  <!-- Fingers right hand -->
+  <path d="M320 180 Q330 150 315 120 Q305 100 300 120 Q295 150 300 180" fill="#C49A6C"/>
+  <path d="M300 170 Q305 140 295 110 Q285 90 280 115 Q275 145 285 175" fill="#D4AA7D"/>
+  <path d="M285 165 Q285 135 275 105 Q265 85 260 110 Q255 140 265 170" fill="#C49A6C"/>
+  
+  <!-- Rice grains in hands -->
+  <g fill="#F5F5DC">
+    <ellipse cx="160" cy="175" rx="5" ry="10" transform="rotate(-15 160 175)"/>
+    <ellipse cx="180" cy="165" rx="5" ry="10" transform="rotate(10 180 165)"/>
+    <ellipse cx="200" cy="160" rx="5" ry="10" transform="rotate(-5 200 160)"/>
+    <ellipse cx="220" cy="165" rx="5" ry="10" transform="rotate(15 220 165)"/>
+    <ellipse cx="240" cy="175" rx="5" ry="10" transform="rotate(-10 240 175)"/>
+    
+    <ellipse cx="150" cy="190" rx="4" ry="8" transform="rotate(20 150 190)"/>
+    <ellipse cx="170" cy="185" rx="4" ry="8" transform="rotate(-8 170 185)"/>
+    <ellipse cx="190" cy="180" rx="4" ry="8" transform="rotate(12 190 180)"/>
+    <ellipse cx="210" cy="180" rx="4" ry="8" transform="rotate(-12 210 180)"/>
+    <ellipse cx="230" cy="185" rx="4" ry="8" transform="rotate(8 230 185)"/>
+    <ellipse cx="250" cy="190" rx="4" ry="8" transform="rotate(-20 250 190)"/>
+    
+    <ellipse cx="165" cy="200" rx="4" ry="8" transform="rotate(-5 165 200)"/>
+    <ellipse cx="185" cy="195" rx="4" ry="8" transform="rotate(15 185 195)"/>
+    <ellipse cx="200" cy="192" rx="4" ry="8" transform="rotate(0 200 192)"/>
+    <ellipse cx="215" cy="195" rx="4" ry="8" transform="rotate(-15 215 195)"/>
+    <ellipse cx="235" cy="200" rx="4" ry="8" transform="rotate(5 235 200)"/>
+  </g>
+  
+  <!-- Some grains falling -->
+  <g fill="#FFFACD" opacity="0.8">
+    <ellipse cx="180" cy="230" rx="3" ry="6" transform="rotate(25 180 230)"/>
+    <ellipse cx="220" cy="240" rx="3" ry="6" transform="rotate(-20 220 240)"/>
+    <ellipse cx="195" cy="250" rx="3" ry="6" transform="rotate(10 195 250)"/>
+    <ellipse cx="210" cy="260" rx="3" ry="6" transform="rotate(-15 210 260)"/>
+  </g>
+  
+  <!-- Warm light overlay -->
+  <rect width="400" height="300" fill="url(#warm-light)" opacity="0.2"/>
+  <defs>
+    <radialGradient id="warm-light" cx="50%" cy="30%">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+  </defs>
+</svg>

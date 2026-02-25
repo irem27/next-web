@@ -1,0 +1,549 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+// Hero Section
+model HeroSection {
+  id              String   @id @default(uuid())
+  title           String
+  subtitle        String?
+  description     String?
+  buttonText      String?
+  buttonLink      String?
+  backgroundImage String?
+  heroImage       String?
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// Site Settings
+model SiteSettings {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// About Section (shared across sites via siteKey)
+model AboutSection {
+  id              String   @id @default(uuid())
+  siteKey         String   @default("alamira")
+  badgeText       String   @default("About Us")
+  title           String
+  subtitle        String?
+  description     String?
+  happyUsersCount String   @default("2000+")
+  happyUsersText  String   @default("Happy Users Rating")
+  // Images
+  image1          String?
+  image1Alt       String?
+  image2          String?
+  image2Alt       String?
+  // Info Card
+  infoCardTitle   String?
+  infoCardText    String?
+  // Badge
+  badgePercent    String   @default("100%")
+  badgeSubtext    String   @default("Pure Rice, Pure Life")
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([siteKey])
+}
+
+// About Page - Values Section (What Makes Us Different)
+model AboutValuesSection {
+  id        String   @id @default(uuid())
+  siteKey   String   @default("about")
+  badgeText String   @default("Unsere Werte")
+  title     String   @default("Was uns besonders macht")
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([siteKey])
+}
+
+model AboutValueItem {
+  id          String   @id @default(uuid())
+  siteKey     String   @default("about")
+  title       String
+  description String?
+  icon        String   @default("heart") // heart | shield | globe | users
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([siteKey])
+}
+
+// About Page - CTA Section (Ready to Experience...)
+model AboutCtaSection {
+  id                  String   @id @default(uuid())
+  siteKey              String   @default("about")
+  title               String   @default("Ready to Experience Pure Rice?")
+  description         String?  @default("Discover our premium collection of Basmati and Sella rice. Taste the difference that quality and care makes.")
+  primaryButtonText   String?  @default("View Our Products")
+  primaryButtonLink   String?  @default("/products")
+  secondaryButtonText String?  @default("Contact Us")
+  secondaryButtonLink String?  @default("/contact")
+  isActive            Boolean  @default(true)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@unique([siteKey])
+}
+
+// Products Section Settings
+model ProductsSection {
+  id          String   @id @default(uuid())
+  badgeText   String   @default("Alamira Products")
+  title       String   @default("Pure Products And Honest Practices")
+  description String?
+  buttonText  String   @default("View All Product")
+  buttonLink  String   @default("/products")
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Product Category
+model ProductCategory {
+  id        String    @id @default(uuid())
+  name      String
+  slug      String    @unique
+  order     Int       @default(0)
+  isActive  Boolean   @default(true)
+  products  Product[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+// Product
+model Product {
+  id          String          @id @default(uuid())
+  name        String
+  description String?
+  image       String?
+  price       String?
+  categoryId  String
+  category    ProductCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  order       Int             @default(0)
+  isActive    Boolean         @default(true)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+}
+
+// Instagram Section Settings
+model InstagramSection {
+  id          String   @id @default(uuid())
+  badgeText   String   @default("@alamira.rice")
+  title       String   @default("Alamira on Instagram")
+  description String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Instagram Posts
+model InstagramPost {
+  id        String   @id @default(uuid())
+  image     String
+  alt       String?
+  link      String?
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Blog/Recipes Section Settings
+model BlogSection {
+  id          String   @id @default(uuid())
+  badgeText   String   @default("Our Blog")
+  title       String   @default("Stories Of Rice Crops & Organic")
+  description String?
+  buttonText  String   @default("View All Blogs")
+  buttonLink  String   @default("/blog")
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Blog/Recipe Posts
+model BlogPost {
+  id          String   @id @default(uuid())
+  title       String
+  slug        String   @unique
+  excerpt     String?
+  content     String?
+  image       String?
+  author      String   @default("Admin")
+  date        DateTime @default(now())
+  featured    Boolean  @default(false)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// User Authentication
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String?
+  role      String   @default("admin")
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Contact Section Settings
+model ContactSection {
+  id              String   @id @default(uuid())
+  badgeText       String   @default("Contact Us")
+  title           String   @default("Talk To The Team Behind The Grains")
+  description     String?
+  // Location
+  locationTitle   String   @default("Location")
+  locationText    String   @default("Lorem ipsum dolor sit amet, consectetuer")
+  // Email
+  emailTitle      String   @default("Email Us")
+  email1          String   @default("info@mail.com")
+  email2          String?
+  // Phone
+  phoneTitle      String   @default("Phone")
+  phone1          String   @default("(000)-000-0000")
+  phone2          String?
+  // Form
+  formTitle       String   @default("Get In Touch With Rice Crops")
+  formDescription String?
+  // Images
+  contactImage    String?
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// Contact Form Submissions
+model ContactSubmission {
+  id          String   @id @default(uuid())
+  name        String
+  email       String
+  phone       String?
+  supportType String?
+  message     String
+  isRead      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// General Site Settings (structured)
+model GeneralSettings {
+  id              String   @id @default(uuid())
+  // Site Info
+  siteName        String   @default("Alamira Rice")
+  siteTagline     String   @default("Pure Rice, Pure Life")
+  siteDescription String?
+  logo            String?
+  logoAlamira     String?
+  logoLogistics   String?
+  favicon         String?
+  // Contact Info
+  email           String?
+  phone           String?
+  address         String?
+  // Social Media
+  facebook        String?
+  instagram       String?
+  twitter         String?
+  youtube         String?
+  linkedin        String?
+  // SEO
+  metaTitle       String?
+  metaDescription String?
+  metaKeywords    String?
+  // Footer
+  footerText      String?
+  copyrightText   String?
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// Footer Configuration (per-site)
+model FooterConfig {
+  id               String   @id @default(uuid())
+  siteKey          String   @unique
+  newsletterTitle  String   @default("Stay Connected With Us")
+  brandName        String   @default("ALAMIRA")
+  brandDescription String?
+  accentColor      String   @default("#D4A853")
+  copyrightText    String?
+  // JSON arrays: [{label, href}]
+  topLinks         String   @default("[]")
+  serviceLinks     String   @default("[]")
+  // JSON array: [{day, hours}]
+  workingHours     String   @default("[]")
+  isActive         Boolean  @default(true)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+// Newsletter Subscribers
+model NewsletterSubscriber {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ============================================
+// HOME PAGE SECTIONS
+// ============================================
+
+// Hero Slider Slides
+model HeroSlide {
+  id          String   @id @default(uuid())
+  brand       String   @default("alamira") // alamira or grainfood
+  title       String
+  subtitle    String?
+  description String?
+  image       String?
+  ctaText     String?
+  ctaLink     String?
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Services Section
+model ServiceItem {
+  id          String   @id @default(uuid())
+  number      String   @default("01")
+  title       String
+  heading     String?
+  subheading  String?
+  description String?
+  features    String?  // JSON array stored as string
+  image       String?
+  icon        String?  // Icon name/type
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Stats Section
+model StatsSection {
+  id          String   @id @default(uuid())
+  title       String   @default("Let's See Our Progress")
+  description String?
+  buttonText  String?
+  buttonLink  String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model StatItem {
+  id        String   @id @default(uuid())
+  value     String
+  label     String
+  suffix    String?
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Request Quote / CTA Section
+model QuoteSection {
+  id                 String   @id @default(uuid())
+  title              String   @default("Get a logistics quote tailored to your shipment")
+  description        String?
+  primaryButtonText  String?  @default("Request a Quote")
+  primaryButtonLink  String?  @default("/contact")
+  secondaryButtonText String? @default("Contact our team")
+  secondaryButtonLink String? @default("/contact")
+  image              String?
+  isActive           Boolean  @default(true)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+// Alamira Brand Section
+model BrandSection {
+  id           String   @id @default(uuid())
+  badgeText    String   @default("Featured Brand")
+  title        String   @default("ALAMIRA Rice")
+  subtitle     String?  @default("Pure Rice, Pure Life")
+  description  String?
+  buttonText   String?  @default("Visit Alamira Rice")
+  buttonLink   String?  @default("/alamira-rice")
+  button2Text  String?  @default("Manage Content")
+  button2Link  String?  @default("/dashboard/alamira")
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+// Logistics Landing - Hero Section
+model LogisticsHero {
+  id                String   @id @default(uuid())
+  badge             String   @default("Leading Logistics Provider")
+  title             String   @default("LOGI CRAFT")
+  subtitle          String?  @default("Crafting Your Logistics Success")
+  description       String?
+  backgroundImage   String?
+  searchPlaceholder String?  @default("Track My Shipment")
+  button1Text       String?  @default("Delivery & coverage")
+  button1Link       String?  @default("#services")
+  button2Text       String?  @default("Costs Calculators")
+  button2Link       String?  @default("#solutions")
+  isActive          Boolean  @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+// Logistics Landing - Service Items (interactive tabs)
+model LogisticsServiceItem {
+  id          String   @id @default(uuid())
+  number      String   @default("01")
+  label       String
+  title       String
+  description String?
+  buttonText  String?  @default("More Info")
+  buttonLink  String?  @default("#contact")
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Logistics Landing - Stats Section
+model LogisticsStatsSection {
+  id          String   @id @default(uuid())
+  title       String   @default("Let's See Our Progress")
+  description String?
+  buttonText  String?  @default("More Info")
+  buttonLink  String?  @default("#about")
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Logistics Landing - Stat Items
+model LogisticsStatItem {
+  id        String   @id @default(uuid())
+  value     Int      @default(0)
+  suffix    String?
+  label     String
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Logistics Landing - How We Work Section
+model LogisticsProcessSection {
+  id          String   @id @default(uuid())
+  title       String   @default("How We Work")
+  description String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Logistics Landing - Process Steps
+model LogisticsProcessStep {
+  id          String   @id @default(uuid())
+  number      String   @default("01")
+  title       String
+  description String?
+  image       String?
+  imageAlt    String?
+  icon        String?  // order, route, package, tracking, delivery
+  badgeText   String?  // "Optimized Routes", "Safe Transit" etc.
+  colorTheme  String   @default("blue") // blue, green, orange, purple
+  isDark      Boolean  @default(false)
+  hasImage    Boolean  @default(false)
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Logistics Landing - Marquee Words
+model LogisticsMarqueeWord {
+  id        String   @id @default(uuid())
+  word      String
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Logistics Landing - News Section
+model LogisticsNewsSection {
+  id          String   @id @default(uuid())
+  title       String   @default("Latest News")
+  description String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Logistics Landing - News Articles
+model LogisticsNewsArticle {
+  id          String   @id @default(uuid())
+  title       String
+  slug        String?  @unique
+  excerpt     String?
+  content     String?
+  image       String?
+  imageAlt    String?
+  author      String?
+  link        String?
+  publishedAt DateTime @default(now())
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Brand Slider (Split Screen Homepage)
+model BrandSlide {
+  id              String   @id @default(uuid())
+  brand           String   @default("alamira") // alamira or grainfood
+  title           String
+  subtitle        String?
+  description     String?
+  buttonText      String?
+  buttonLink      String?
+  backgroundImage String?
+  theme           String   @default("dark") // "light" or "dark"
+  accentColor     String   @default("blue") // orange, blue, green, purple, red
+  icon            String   @default("default") // rice, logistics, default, etc.
+  order           Int      @default(0)
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}

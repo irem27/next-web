@@ -1,0 +1,47 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Sky -->
+  <rect width="400" height="100" fill="url(#sky1)"/>
+  <defs>
+    <linearGradient id="sky1" x1="0" y1="0" x2="0" y2="100">
+      <stop offset="0%" stop-color="#87CEEB"/>
+      <stop offset="100%" stop-color="#B0E0E6"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Rice field rows - perspective view -->
+  <rect y="100" width="400" height="200" fill="#4CAF50"/>
+  
+  <!-- Field rows with perspective -->
+  <g fill="#3D8B40">
+    <rect x="0" y="100" width="400" height="8"/>
+    <rect x="0" y="120" width="400" height="6"/>
+    <rect x="0" y="140" width="400" height="5"/>
+    <rect x="0" y="160" width="400" height="4"/>
+    <rect x="0" y="180" width="400" height="4"/>
+    <rect x="0" y="200" width="400" height="3"/>
+    <rect x="0" y="220" width="400" height="3"/>
+    <rect x="0" y="240" width="400" height="3"/>
+    <rect x="0" y="260" width="400" height="3"/>
+    <rect x="0" y="280" width="400" height="3"/>
+  </g>
+  
+  <!-- Water channel in center -->
+  <path d="M195 100 L190 300 L210 300 L205 100 Z" fill="#87CEEB" opacity="0.8"/>
+  <path d="M195 100 L190 300" stroke="#6BB3D0" stroke-width="1"/>
+  <path d="M205 100 L210 300" stroke="#6BB3D0" stroke-width="1"/>
+  
+  <!-- Rice plants detail -->
+  <g stroke="#2E7D32" stroke-width="1" fill="none">
+    <path d="M50 150 Q55 140 50 130"/>
+    <path d="M80 160 Q85 150 80 140"/>
+    <path d="M120 170 Q125 160 120 150"/>
+    <path d="M280 170 Q285 160 280 150"/>
+    <path d="M320 160 Q325 150 320 140"/>
+    <path d="M350 150 Q355 140 350 130"/>
+  </g>
+  
+  <!-- Light reflections on water -->
+  <ellipse cx="200" cy="180" rx="3" ry="8" fill="white" opacity="0.5"/>
+  <ellipse cx="198" cy="220" rx="2" ry="6" fill="white" opacity="0.4"/>
+  <ellipse cx="202" cy="260" rx="3" ry="10" fill="white" opacity="0.3"/>
+</svg>
