@@ -7,8 +7,8 @@
     "build": "next build",
     "vercel-build": "prisma migrate deploy && next build",
     "postinstall": "prisma generate",
-    "start": "sh -c 'set -e; if [ ! -d .next ]; then npm run build; fi; next start -p $PORT'",
-    "start:render": "sh -c 'set -e; if [ ! -d .next ]; then npm run build; fi; if [ -n \"${DATABASE_URL:-}\" ]; then prisma migrate deploy; fi; next start -p $PORT'",
+    "start": "sh -c 'set -e; echo PWD=$(pwd); ls -la; if [ ! -d .next ]; then echo \".next missing; running build\"; npm run build; fi; test -f .next/BUILD_ID; next start -p $PORT'",
+    "start:render": "sh -c 'set -e; echo PWD=$(pwd); ls -la; if [ ! -d .next ]; then echo \".next missing; running build\"; npm run build; fi; test -f .next/BUILD_ID; if [ -n \"${DATABASE_URL:-}\" ]; then prisma migrate deploy; fi; next start -p $PORT'",
     "lint": "eslint"
   },
   "dependencies": {
