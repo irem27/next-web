@@ -8,35 +8,27 @@ const prisma = new PrismaClient();
 // Sadece hiç kullanıcı yoksa çalışır
 export async function POST() {
   try {
-    // Kullanıcı var mı kontrol et
-    const userCount = await prisma.user.count();
-
-    if (userCount > 0) {
-      return NextResponse.json(
-        { message: "Kullanıcı zaten mevcut", exists: true },
-        { status: 200 }
-      );
-    }
-
-    // Varsayılan admin şifresini hashle
     const hashedPassword = await bcrypt.hash("ALAmira2026!.", 12);
 
-    // Varsayılan admin kullanıcı oluştur
-    const user = await prisma.user.create({
-      data: {
+    const user = await prisma.user.upsert({
+      where: { email: "admin@alamira.com" },
+      update: {
+        password: hashedPassword,
+        role: "admin",
+        isActive: true,
+      },
+      create: {
         email: "admin@alamira.com",
         password: hashedPassword,
         name: "Admin",
         role: "admin",
+        isActive: true,
       },
     });
 
     return NextResponse.json({
-      message: "Varsayılan admin kullanıcı oluşturuldu",
-      user: {
-        email: user.email,
-        name: user.name,
-      },
+      message: "Admin kullanıcı oluşturuldu/güncellendi",
+      user: { email: user.email, name: user.name },
     });
   } catch (error) {
     console.error("Seed error:", error);
