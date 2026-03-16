@@ -1,11 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 
 export default function LoginPage() {
-  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -42,19 +40,16 @@ export default function LoginPage() {
         redirect: false,
       });
 
-      console.log("SignIn result:", result);
-
-      if (result?.error) {
-        console.error("SignIn error:", result.error);
+      if (result?.error || !result?.ok) {
         setError("Geçersiz e-posta veya şifre");
-      } else if (result?.ok) {
-        router.push("/dashboard");
-        router.refresh();
+        setIsLoading(false);
+      } else {
+        // Session oluştuktan sonra hard redirect — NextAuth v5 beta ile en güvenilir yöntem
+        window.location.href = "/dashboard";
       }
     } catch (err) {
       console.error("SignIn catch error:", err);
       setError("Giriş yapılırken bir hata oluştu");
-    } finally {
       setIsLoading(false);
     }
   };
