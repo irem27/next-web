@@ -2,23 +2,40 @@ import type { Metadata } from "next";
 import HomePageContent from "./HomePageContent";
 
 export const metadata: Metadata = {
-  title: "IM Admin | Modern İçerik Yönetim Sistemi",
+  title: "Grainfood GmbH – Logistik & Alamira Reis Großhandel",
   description:
-    "Profesyonel içerik yönetim sistemi. Web sitenizi kolayca yönetin, içeriklerinizi düzenleyin ve markanızı büyütün.",
+    "Grainfood GmbH aus Deutschland: Zuverlässige Logistiklösungen und hochwertiger Alamira Reis im Großhandel. Effizient, schnell und europaweit geliefert.",
   keywords: [
-    "cms",
-    "içerik yönetim",
-    "admin panel",
-    "web sitesi",
-    "yönetim",
-    "dashboard",
+    "Grainfood",
+    "Alamira Reis",
+    "Großhandel",
+    "Logistik",
+    "Spedition",
+    "Basmati",
+    "Sella Reis",
+    "Deutschland",
+    "Europa",
   ],
   openGraph: {
-    title: "IM Admin | Modern İçerik Yönetim Sistemi",
+    title: "Grainfood GmbH – Logistik & Alamira Reis Großhandel",
     description:
-      "Profesyonel içerik yönetim sistemi. Web sitenizi kolayca yönetin.",
+      "Grainfood GmbH aus Deutschland: Zuverlässige Logistiklösungen und hochwertiger Alamira Reis im Großhandel. Effizient, schnell und europaweit geliefert.",
     type: "website",
-    locale: "tr_TR",
+    locale: "de_DE",
+    siteName: "Grainfood GmbH",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Grainfood GmbH – Logistik & Alamira Reis Großhandel",
+    description:
+      "Grainfood GmbH aus Deutschland: Zuverlässige Logistiklösungen und hochwertiger Alamira Reis im Großhandel.",
+  },
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

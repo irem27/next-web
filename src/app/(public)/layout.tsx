@@ -2,25 +2,38 @@ import type { Metadata } from "next";
 import DrawerHeaderLayout from "./DrawerHeaderLayout";
 
 export const metadata: Metadata = {
-  title: "Imperial Grainfood | Premium Rice & Logistics",
+  title: "Grainfood GmbH – Logistik & Alamira Reis Großhandel",
   description:
-    "Alamira Premium Rice Specialties & Grainfood Transport, Freight & Logistics Services",
+    "Grainfood GmbH aus Deutschland: Zuverlässige Logistiklösungen und hochwertiger Alamira Reis im Großhandel. Effizient, schnell und europaweit geliefert.",
   keywords: [
-    "basmati rice",
-    "sella rice",
-    "premium rice",
-    "alamira",
-    "grainfood",
-    "logistics",
-    "transport",
-    "freight",
+    "Grainfood",
+    "Alamira Reis",
+    "Großhandel",
+    "Logistik",
+    "Spedition",
+    "Basmati",
+    "Sella Reis",
+    "Deutschland",
+    "Europa",
+    "Lebensmittelgroßhandel",
   ],
   openGraph: {
-    title: "Imperial Grainfood | Premium Rice & Logistics",
+    title: "Grainfood GmbH – Logistik & Alamira Reis Großhandel",
     description:
-      "Alamira Premium Rice Specialties & Grainfood Transport, Freight & Logistics Services",
+      "Grainfood GmbH aus Deutschland: Zuverlässige Logistiklösungen und hochwertiger Alamira Reis im Großhandel. Effizient, schnell und europaweit geliefert.",
     type: "website",
-    locale: "en_US",
+    locale: "de_DE",
+    siteName: "Grainfood GmbH",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Grainfood GmbH – Logistik & Alamira Reis Großhandel",
+    description:
+      "Grainfood GmbH aus Deutschland: Zuverlässige Logistiklösungen und hochwertiger Alamira Reis im Großhandel.",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

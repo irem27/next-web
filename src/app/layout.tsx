@@ -13,10 +13,36 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Admin Panel | Giriş",
-  description: "Admin Panel Yönetim Sistemi",
-};
+async function getSettings() {
+  try {
+    const baseUrl = process.env.NEXTAUTH_URL ?? "http://localhost:5001";
+    const res = await fetch(`${baseUrl}/api/settings`, {
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) return null;
+    return res.json();
+  } catch {
+    return null;
+  }
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSettings();
+  const favicon = settings?.favicon ?? null;
+
+  return {
+    title: "Grainfood GmbH – Logistik & Alamira Reis Großhandel",
+    description:
+      "Grainfood GmbH aus Deutschland: Zuverlässige Logistiklösungen und hochwertiger Alamira Reis im Großhandel. Effizient, schnell und europaweit geliefert.",
+    icons: favicon
+      ? {
+          icon: favicon,
+          shortcut: favicon,
+          apple: favicon,
+        }
+      : undefined,
+  };
+}
 
 export default function RootLayout({
   children,
@@ -24,7 +50,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="de">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
