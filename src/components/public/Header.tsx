@@ -53,7 +53,6 @@ export default function Header(props: HeaderProps) {
   const isLogistics =
     pathname === "/" ||
     pathname.startsWith("/logistics") ||
-    pathname.startsWith("/news") ||
     pathname.startsWith("/contact") ||
     pathname.startsWith("/about") ||
     pathname.startsWith("/impressum") ||

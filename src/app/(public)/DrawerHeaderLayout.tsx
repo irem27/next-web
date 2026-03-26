@@ -9,14 +9,12 @@ import { usePathname } from 'next/navigation';
 const menuItems = [
   { label: "Startseite", href: "/" },
   { label: "Über uns", href: "/about" },
-  { label: "Nachrichten", href: "/news" },
   { label: "Grainfood", href: "/logistics-landing" },
   {
     label: "Alamira",
     children: [
       { label: "Alamira Rice", href: "/alamira-rice" },
       { label: "Produkte", href: "/products" },
-      { label: "Rezepte", href: "/blog" },
     ],
   },
   { label: "Kontakt", href: "/contact" },

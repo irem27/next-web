@@ -202,6 +202,7 @@ export default function LogisticsLandingPage() {
     email: "",
     telefonnummer: "",
     artDerWare: [] as string[],
+    nachricht: "",
   });
   const [angebotStatus, setAngebotStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
@@ -237,6 +238,8 @@ export default function LogisticsLandingPage() {
       if (res.ok) {
         setAngebotStatus("success");
         setAngebotForm({ firmenname: "", ansprechpartner: "", adresse: "", email: "", telefonnummer: "", artDerWare: [] });
+        setAngebotForm({ firmenname: "", ansprechpartner: "", adresse: "", email: "", telefonnummer: "", artDerWare: [], nachricht: "" });
+        message: `Angebotformular\n\nFirmenname: ${angebotForm.firmenname}\nAnsprechpartner: ${angebotForm.ansprechpartner}\nAdresse: ${angebotForm.adresse}\nE-Mail: ${angebotForm.email}\nTelefonnummer: ${angebotForm.telefonnummer}\nArt der Ware: ${angebotForm.artDerWare.join(", ") || "—"}\nNachricht: ${angebotForm.nachricht || "—"}`,
         setTimeout(() => setAngebotStatus("idle"), 4000);
       } else {
         setAngebotStatus("error");
@@ -288,131 +291,133 @@ export default function LogisticsLandingPage() {
             if (Array.isArray(mData)) setMarqueeWords(mData.map((w: { word: string }) => w.word));
           }
         }
-      } catch { /* silently fail, fallback UI shown */ }
-    })();
-    return () => { mounted = false; };
-  }, []);
-
-  const logisticsContactEmail = publicSettings?.logisticsContactEmail || "info@logicraft.de";
-  const logisticsContactPhone = publicSettings?.logisticsContactPhone || "+49 (0) 123 456 789";
-
-  const marquee = marqueeWords.length > 0 ? marqueeWords : FALLBACK_MARQUEE;
-
-  const activeService = services[activeServiceIdx] ?? null;
-
-  return (
-    <div className="overflow-x-hidden">
-      <main>
-        {/* ========== HERO SECTION ========== */}
-        <div className="bg-[#1a214f]">
-          <section
-            id="track"
-            className="pt-8 sm:pt-10 lg:pt-12 pb-6 sm:pb-8 px-4 sm:px-6 lg:px-10"
-            aria-label="Hero"
-          >
-            <div className="max-w-[1320px] mx-auto">
-              <div
-                className="relative w-full rounded-[28px] overflow-hidden"
-                style={{
-                  background:
-                    "linear-gradient(135deg, #1a214f 0%, #2a3470 50%, #3d4a8f 100%)",
-                }}
-              >
-                {/* Background Image */}
-                {(hero?.backgroundImage || !hero) && (
-                  <Image
-                    src={hero?.backgroundImage || "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1920&q=80"}
-                    alt="Colorful shipping containers stacked at a busy international port terminal against blue sky"
-                    fill
-                    className="object-cover"
-                    priority
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1320px"
-                  />
-                )}
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#1a214f]/95 via-[#1a214f]/75 to-[#1a214f]/20 md:to-transparent" />
-
-                {/* Content */}
-                <div className="relative z-10 flex flex-col justify-center min-h-[440px] sm:min-h-[500px] lg:min-h-[560px] px-6 sm:px-10 lg:px-14 xl:px-20 py-12">
-                  <div className="max-w-xl">
-                    <p className="text-[#f06721] text-xs sm:text-sm font-medium tracking-widest uppercase mb-4">
-                      {hero?.badge ?? "Leading Logistics Provider"}
-                    </p>
-                    <h1 className="text-white text-[40px] sm:text-[52px] lg:text-[68px] font-extrabold leading-[1.05] mb-3 tracking-tight">
-                      {hero?.title ?? "GRAINFOOD"}
-                    </h1>
-                    <p className="text-white/90 text-lg sm:text-xl lg:text-2xl font-medium mb-5 italic">
-                      {hero?.subtitle ?? "Crafting Your Logistics Success"}
-                    </p>
-                    <p className="text-white/60 text-sm sm:text-[15px] mb-8 leading-relaxed max-w-md">
-                      {hero?.description ??
-                        "Leading global logistics provider delivering comprehensive transport, freight, and supply chain solutions. From packaging to final delivery, we handle every detail with precision."}
-                    </p>
-
-                    {/* Track Shipment */}
-                    <div className="flex items-center bg-white rounded-full pl-4 sm:pl-5 pr-1.5 py-1.5 max-w-[420px] mb-6 shadow-xl shadow-black/10">
-                      <svg
-                        className="w-5 h-5 text-gray-400 mr-3 flex-shrink-0"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                        />
-                      </svg>
-                      <input
-                        type="text"
-                        placeholder={hero?.searchPlaceholder ?? "Track My Shipment"}
-                        className="bg-transparent text-gray-800 text-sm outline-none w-full placeholder-gray-400"
-                        aria-label="Enter tracking number"
-                      />
-                      <button
-                        className="bg-[#1a214f] text-white rounded-full w-9 h-9 flex items-center justify-center hover:bg-[#162d52] transition-colors flex-shrink-0"
-                        aria-label="Track shipment"
-                      >
-                        <svg
-                          className="w-4 h-4"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M14 5l7 7m0 0l-7 7m7-7H3"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-
-                    {/* CTA Buttons */}
-                    <div className="flex flex-wrap gap-3">
-                      <Link
-                        href={hero?.button1Link ?? "#services"}
-                        className="border border-white/30 text-white px-6 py-2.5 rounded-full text-[13px] sm:text-sm font-semibold hover:bg-white/10 transition-all backdrop-blur-sm"
-                      >
-                        {hero?.button1Text ?? "Delivery & coverage"}
-                      </Link>
-                      <Link
-                        href={hero?.button2Link ?? "#solutions"}
-                        className="bg-[#f06721] text-white px-6 py-2.5 rounded-full text-[13px] sm:text-sm font-semibold hover:bg-[#d95a1b] transition-all shadow-lg shadow-[#f06721]/30"
-                      >
-                        {hero?.button2Text ?? "Costs Calculators"}
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        {/* ========== HOW WE WORK ========== */}
+        {/**
+        <section
+          id="solutions"
+          className="py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-10 bg-[#FAFBFF]"
+          aria-label="How We Work"
+        >
+          <div className="max-w-[1320px] mx-auto">
+            <div className="text-center mb-12 lg:mb-16 max-w-2xl mx-auto">
+              <h2 className="text-[28px] sm:text-[32px] lg:text-[40px] font-extrabold text-[#1a214f] mb-4 tracking-tight">
+                {processSection?.title ?? "How We Work"}
+              </h2>
+              <p className="text-gray-500 text-[15px] sm:text-base leading-relaxed">
+                {processSection?.description ??
+                  "Discover our streamlined process that ensures efficiency and excellence at every step of the way."}
+              </p>
             </div>
-          </section>
-        </div>
 
-        {/* ========== SERVICES + TRANSPORT SOLUTIONS ========== */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+              {processSteps.map((step, idx) => {
+                const theme = step.colorTheme || "blue";
+                const bgMap: Record<string, string> = {
+                  blue: "bg-orange-50 text-[#f06721]",
+                  green: "bg-green-50 text-green-600",
+                  orange: "bg-orange-50 text-orange-600",
+                  purple: "bg-purple-50 text-purple-600",
+                };
+                const lineMap: Record<string, string> = {
+                  blue: "from-orange-200",
+                  green: "from-green-200",
+                  orange: "from-orange-200",
+                  purple: "from-purple-200",
+                };
+                const badgeColorMap: Record<string, string> = {
+                  blue: "text-[#f06721]",
+                  green: "text-green-600",
+                  orange: "text-orange-600",
+                  purple: "text-purple-600",
+                };
+                const imgGradMap: Record<string, string> = {
+                  blue: "from-orange-100 to-orange-50",
+                  green: "from-green-100 to-green-50",
+                  orange: "from-orange-100 to-orange-50",
+                  purple: "from-purple-100 to-purple-50",
+                };
+
+                {/* Center image panel after first step on lg screens */}
+                const showCenterPanel = idx === 1 && processSteps.length >= 2;
+
+                return (
+                  <React.Fragment key={step.id}>
+                    {showCenterPanel && (
+                      <div className="hidden lg:flex relative rounded-[20px] overflow-hidden min-h-[360px] items-end">
+                        <Image
+                          src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80"
+                          alt="Shipping containers being loaded at a port crane"
+                          fill
+                          className="object-cover"
+                          sizes="33vw"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#1a214f]/60 to-transparent" />
+                        <div className="relative z-10 p-6">
+                          <span className="text-white/80 text-xs font-medium tracking-widest uppercase">
+                            Global Network
+                          </span>
+                          <p className="text-white text-lg font-bold mt-1">
+                            150+ Countries Connected
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
+                    <div
+                      className={`rounded-[20px] p-7 sm:p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ${
+                        step.isDark
+                          ? "bg-[#1a214f]"
+                          : "bg-white border border-gray-100"
+                      }`}
+                    >
+                      <div className="flex items-center gap-4 mb-5">
+                        <div
+                          className={`w-14 h-14 rounded-2xl flex items-center justify-center font-extrabold text-lg ${
+                            step.isDark ? "bg-white/10 text-white" : bgMap[theme] ?? bgMap.blue
+                          }`}
+                        >
+                          {step.number}
+                        </div>
+                        <div
+                          className={`h-px flex-1 bg-gradient-to-r to-transparent ${
+                            step.isDark ? "from-white/20" : lineMap[theme] ?? lineMap.blue
+                          }`}
+                        />
+                      </div>
+                      <h3
+                        className={`text-xl font-bold mb-3 ${
+                          step.isDark ? "text-white" : "text-[#1a214f]"
+                        }`}
+                      >
+                        {step.title}
+                      </h3>
+                      <p
+                        className={`text-sm leading-relaxed ${
+                          step.isDark ? "text-white/60" : "text-gray-500"
+                        } ${step.hasImage && step.image ? "mb-5" : ""}`}
+                      >
+                        {step.description}
+                      </p>
+
+                      {step.hasImage && step.image ? (
+                        <div className={`relative h-36 rounded-xl overflow-hidden bg-gradient-to-br ${imgGradMap[theme] ?? imgGradMap.blue}`}>
+                          <Image
+                            src={step.image}
+                            alt={step.imageAlt ?? step.title}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                          />
+                        </div>
+                      ) : null}
+                    </div>
+                  </React.Fragment>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+        */}
         <section
           id="services"
           className="py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-10 bg-[#f4f4f4]"
@@ -532,6 +537,7 @@ export default function LogisticsLandingPage() {
         </section>
 
         {/* ========== PROGRESS / STATS SECTION ========== */}
+        {/**
         <section
           className="pt-6 sm:pt-8 lg:pt-10 pb-16 sm:pb-20 lg:pb-28 px-4 sm:px-6 lg:px-10 bg-[#f4f4f4]"
           aria-label="Our Progress in Numbers"
@@ -595,6 +601,7 @@ export default function LogisticsLandingPage() {
             </div>
           </div>
         </section>
+        */}
 
         {/* ========== MARQUEE DIVIDER ========== */}
         <div
@@ -948,6 +955,20 @@ export default function LogisticsLandingPage() {
 
                   {/* E-Mail & Telefonnummer – 2 columns on sm+ */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  {/* Nachricht (Müşteri mesajı) */}
+                  <div>
+                    <label htmlFor="nachricht" className="block text-[#1a214f] text-sm font-semibold mb-1.5">
+                      Nachricht
+                    </label>
+                    <textarea
+                      id="nachricht"
+                      name="nachricht"
+                      value={angebotForm.nachricht}
+                      onChange={handleAngebotChange}
+                      placeholder="Ihre Nachricht an uns..."
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-800 placeholder-gray-400 outline-none focus:border-[#f06721] focus:ring-2 focus:ring-[#f06721]/10 transition-all min-h-[100px]"
+                    />
+                  </div>
                     <div>
                       <label htmlFor="angebot-email" className="block text-[#1a214f] text-sm font-semibold mb-1.5">
                         E-Mail <span className="text-[#f06721]">*</span>
