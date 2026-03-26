@@ -206,7 +206,7 @@ export default function LogisticsLandingPage() {
   });
   const [angebotStatus, setAngebotStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-  const handleAngebotChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAngebotChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setAngebotForm((prev) => ({ ...prev, [name]: value }));
   };
@@ -237,9 +237,7 @@ export default function LogisticsLandingPage() {
       });
       if (res.ok) {
         setAngebotStatus("success");
-        setAngebotForm({ firmenname: "", ansprechpartner: "", adresse: "", email: "", telefonnummer: "", artDerWare: [] });
         setAngebotForm({ firmenname: "", ansprechpartner: "", adresse: "", email: "", telefonnummer: "", artDerWare: [], nachricht: "" });
-        message: `Angebotformular\n\nFirmenname: ${angebotForm.firmenname}\nAnsprechpartner: ${angebotForm.ansprechpartner}\nAdresse: ${angebotForm.adresse}\nE-Mail: ${angebotForm.email}\nTelefonnummer: ${angebotForm.telefonnummer}\nArt der Ware: ${angebotForm.artDerWare.join(", ") || "—"}\nNachricht: ${angebotForm.nachricht || "—"}`,
         setTimeout(() => setAngebotStatus("idle"), 4000);
       } else {
         setAngebotStatus("error");
@@ -291,318 +289,19 @@ export default function LogisticsLandingPage() {
             if (Array.isArray(mData)) setMarqueeWords(mData.map((w: { word: string }) => w.word));
           }
         }
-        {/* ========== HOW WE WORK ========== */}
-        {/**
-        <section
-          id="solutions"
-          className="py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-10 bg-[#FAFBFF]"
-          aria-label="How We Work"
-        >
-          <div className="max-w-[1320px] mx-auto">
-            <div className="text-center mb-12 lg:mb-16 max-w-2xl mx-auto">
-              <h2 className="text-[28px] sm:text-[32px] lg:text-[40px] font-extrabold text-[#1a214f] mb-4 tracking-tight">
-                {processSection?.title ?? "How We Work"}
-              </h2>
-              <p className="text-gray-500 text-[15px] sm:text-base leading-relaxed">
-                {processSection?.description ??
-                  "Discover our streamlined process that ensures efficiency and excellence at every step of the way."}
-              </p>
-            </div>
+      } catch {
+        // ignore fetch errors
+      }
+    })();
+    return () => { mounted = false; };
+  }, []);
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-              {processSteps.map((step, idx) => {
-                const theme = step.colorTheme || "blue";
-                const bgMap: Record<string, string> = {
-                  blue: "bg-orange-50 text-[#f06721]",
-                  green: "bg-green-50 text-green-600",
-                  orange: "bg-orange-50 text-orange-600",
-                  purple: "bg-purple-50 text-purple-600",
-                };
-                const lineMap: Record<string, string> = {
-                  blue: "from-orange-200",
-                  green: "from-green-200",
-                  orange: "from-orange-200",
-                  purple: "from-purple-200",
-                };
-                const badgeColorMap: Record<string, string> = {
-                  blue: "text-[#f06721]",
-                  green: "text-green-600",
-                  orange: "text-orange-600",
-                  purple: "text-purple-600",
-                };
-                const imgGradMap: Record<string, string> = {
-                  blue: "from-orange-100 to-orange-50",
-                  green: "from-green-100 to-green-50",
-                  orange: "from-orange-100 to-orange-50",
-                  purple: "from-purple-100 to-purple-50",
-                };
+  const activeService = services[activeServiceIdx] ?? null;
+  const marquee = marqueeWords.length > 0 ? marqueeWords : FALLBACK_MARQUEE;
 
-                {/* Center image panel after first step on lg screens */}
-                const showCenterPanel = idx === 1 && processSteps.length >= 2;
-
-                return (
-                  <React.Fragment key={step.id}>
-                    {showCenterPanel && (
-                      <div className="hidden lg:flex relative rounded-[20px] overflow-hidden min-h-[360px] items-end">
-                        <Image
-                          src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80"
-                          alt="Shipping containers being loaded at a port crane"
-                          fill
-                          className="object-cover"
-                          sizes="33vw"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#1a214f]/60 to-transparent" />
-                        <div className="relative z-10 p-6">
-                          <span className="text-white/80 text-xs font-medium tracking-widest uppercase">
-                            Global Network
-                          </span>
-                          <p className="text-white text-lg font-bold mt-1">
-                            150+ Countries Connected
-                          </p>
-                        </div>
-                      </div>
-                    )}
-
-                    <div
-                      className={`rounded-[20px] p-7 sm:p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ${
-                        step.isDark
-                          ? "bg-[#1a214f]"
-                          : "bg-white border border-gray-100"
-                      }`}
-                    >
-                      <div className="flex items-center gap-4 mb-5">
-                        <div
-                          className={`w-14 h-14 rounded-2xl flex items-center justify-center font-extrabold text-lg ${
-                            step.isDark ? "bg-white/10 text-white" : bgMap[theme] ?? bgMap.blue
-                          }`}
-                        >
-                          {step.number}
-                        </div>
-                        <div
-                          className={`h-px flex-1 bg-gradient-to-r to-transparent ${
-                            step.isDark ? "from-white/20" : lineMap[theme] ?? lineMap.blue
-                          }`}
-                        />
-                      </div>
-                      <h3
-                        className={`text-xl font-bold mb-3 ${
-                          step.isDark ? "text-white" : "text-[#1a214f]"
-                        }`}
-                      >
-                        {step.title}
-                      </h3>
-                      <p
-                        className={`text-sm leading-relaxed ${
-                          step.isDark ? "text-white/60" : "text-gray-500"
-                        } ${step.hasImage && step.image ? "mb-5" : ""}`}
-                      >
-                        {step.description}
-                      </p>
-
-                      {step.hasImage && step.image ? (
-                        <div className={`relative h-36 rounded-xl overflow-hidden bg-gradient-to-br ${imgGradMap[theme] ?? imgGradMap.blue}`}>
-                          <Image
-                            src={step.image}
-                            alt={step.imageAlt ?? step.title}
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 768px) 100vw, 33vw"
-                          />
-                        </div>
-                      ) : null}
-                    </div>
-                  </React.Fragment>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-        */
-        <section
-          id="services"
-          className="py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-10 bg-[#f4f4f4]"
-          aria-label="Services and Transport Solutions"
-        >
-          <div className="max-w-[1320px] mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-start">
-              {/* Left: Numbered Services (clickable tabs) */}
-              <div>
-                {(services.length > 0
-                  ? services
-                  : [
-                      { id: "f-1", number: "01", label: "By Road", title: "", description: "", buttonText: "", buttonLink: "", order: 0 },
-                      { id: "f-2", number: "02", label: "By Air", title: "", description: "", buttonText: "", buttonLink: "", order: 1 },
-                      { id: "f-3", number: "03", label: "By Sea", title: "", description: "", buttonText: "", buttonLink: "", order: 2 },
-                    ]
-                ).map((service, index, arr) => {
-                  const isActive = index === activeServiceIdx;
-                  return (
-                    <div key={service.id}>
-                      <button
-                        type="button"
-                        onClick={() => setActiveServiceIdx(index)}
-                        className="w-full flex items-center justify-between py-5 sm:py-7 group cursor-pointer text-left"
-                      >
-                        <div className="flex items-center gap-5 sm:gap-8">
-                          <span
-                            className={`text-[32px] sm:text-[40px] lg:text-[48px] font-extrabold transition-colors duration-300 ${
-                              isActive ? "text-[#f06721]" : "text-gray-200 group-hover:text-[#f06721]"
-                            }`}
-                          >
-                            {service.number}
-                          </span>
-                          <h3
-                            className={`text-lg sm:text-xl lg:text-2xl font-bold transition-colors duration-300 ${
-                              isActive ? "text-[#f06721]" : "text-[#1a214f] group-hover:text-[#f06721]"
-                            }`}
-                          >
-                            {service.label}
-                          </h3>
-                        </div>
-                        <div
-                          className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${
-                            isActive
-                              ? "border-[#f06721] bg-[#f06721]"
-                              : "border-gray-200 group-hover:border-[#f06721] group-hover:bg-[#f06721]"
-                          }`}
-                        >
-                          <svg
-                            className={`w-4 h-4 transition-colors duration-300 ${
-                              isActive ? "text-white" : "text-gray-400 group-hover:text-white"
-                            }`}
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M14 5l7 7m0 0l-7 7m7-7H3"
-                            />
-                          </svg>
-                        </div>
-                      </button>
-                      {index < arr.length - 1 && <div className="h-px bg-gray-200" />}
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Right: Dynamic content based on active service */}
-              <div className="flex flex-col justify-center lg:pt-4">
-                <h2
-                  key={activeService?.id ?? "default-title"}
-                  className="text-[28px] sm:text-[32px] lg:text-[40px] font-extrabold text-[#1a214f] mb-5 leading-[1.15] tracking-tight animate-fade-in-up"
-                >
-                  {(activeService?.title ?? "Transport Solutions\nFor Business to Solve Any\nDelivery Problems")
-                    .split("\n")
-                    .map((line, i, arr) => (
-                      <span key={i}>
-                        {line}
-                        {i < arr.length - 1 && <br />}
-                      </span>
-                    ))}
-                </h2>
-                <p
-                  key={activeService?.id ? `${activeService.id}-desc` : "default-desc"}
-                  className="text-gray-500 text-[15px] sm:text-base mb-8 leading-relaxed max-w-lg animate-fade-in-up"
-                  style={{ animationDelay: "0.1s" }}
-                >
-                  {activeService?.description ??
-                    "Logistics is the Process of Planning, Moving, and Storing Goods and Services with Minute Attention to Details. From Packaging to Maintenance to Transportation."}
-                </p>
-                <Link
-                  href={activeService?.buttonLink ?? "#contact"}
-                  className="inline-flex items-center gap-2.5 bg-[#1a214f] text-white px-8 py-3.5 rounded-full text-sm font-semibold hover:bg-[#162d52] transition-colors w-fit shadow-lg shadow-[#1a214f]/20"
-                >
-                  {activeService?.buttonText ?? "More Info"}
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"
-                    />
-                  </svg>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ========== PROGRESS / STATS SECTION ========== */}
-        {/**
-        <section
-          className="pt-6 sm:pt-8 lg:pt-10 pb-16 sm:pb-20 lg:pb-28 px-4 sm:px-6 lg:px-10 bg-[#f4f4f4]"
-          aria-label="Our Progress in Numbers"
-        >
-          <div className="max-w-[1320px] mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
-              {/* Left: Description */}
-              <div>
-                <h2 className="text-[28px] sm:text-[32px] lg:text-[40px] font-extrabold text-[#1a214f] mb-5 leading-[1.15] tracking-tight">
-                  {statsSection?.title ?? "Let\u2019s See Our Progress"}
-                </h2>
-                <p className="text-gray-500 text-[15px] sm:text-base mb-8 leading-relaxed max-w-lg">
-                  {statsSection?.description ??
-                    "Creating Our Counter: Taking Stock of Our Journey, Embracing Growth, and Finding the Way Forward. Let\u2019s Pause, Reflect, and Renew Our Commitment to Progress."}
-                </p>
-                <Link
-                  href={statsSection?.buttonLink ?? "#about"}
-                  className="inline-flex items-center gap-2.5 bg-[#1a214f] text-white px-8 py-3.5 rounded-full text-sm font-semibold hover:bg-[#162d52] transition-colors shadow-lg shadow-[#1a214f]/20"
-                >
-                  {statsSection?.buttonText ?? "More Info"}
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"
-                    />
-                  </svg>
-                </Link>
-              </div>
-
-              {/* Right: Stats Grid */}
-              <div className="grid grid-cols-2 gap-4 sm:gap-5">
-                {(statItems.length > 0
-                  ? statItems
-                  : [
-                      { id: "f-1", value: 323, suffix: "K", label: "Shipments Delivered" },
-                      { id: "f-2", value: 210, suffix: "K", label: "Happy Clients" },
-                      { id: "f-3", value: 1247, suffix: "", label: "Expert Partners" },
-                      { id: "f-4", value: 64127, suffix: "", label: "Deliveries On-Time" },
-                    ]
-                ).map((stat) => (
-                  <div
-                    key={stat.id}
-                    className="bg-[#f4f4f4] rounded-2xl p-5 sm:p-7 lg:p-8 text-center hover:bg-[#f06721]/5 transition-colors duration-300 border border-[#f06721]/10"
-                  >
-                    <span className="block text-[32px] sm:text-[40px] lg:text-[52px] font-extrabold text-[#1a214f] leading-none mb-2">
-                      <CountUp end={stat.value} suffix={stat.suffix ?? ""} />
-                    </span>
-                    <span className="text-gray-500 text-xs sm:text-sm font-medium">
-                      {stat.label}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-        */}
-
+  return (
+    <div>
+      <main>
         {/* ========== MARQUEE DIVIDER ========== */}
         <div
           className="py-5 sm:py-6 overflow-hidden bg-[#EFF6FF]"
@@ -693,7 +392,7 @@ export default function LogisticsLandingPage() {
                   purple: "from-purple-100 to-purple-50",
                 };
 
-                {/* Center image panel after first step on lg screens */}
+                // Center image panel after first step on lg screens
                 const showCenterPanel = idx === 1 && processSteps.length >= 2;
 
                 return (
@@ -884,7 +583,7 @@ export default function LogisticsLandingPage() {
                   </div>
                   <div>
                     <p className="text-[#1a214f] font-semibold text-sm">E-Mail</p>
-                    <p className="text-gray-500 text-sm">{logisticsContactEmail}</p>
+                    <p className="text-gray-500 text-sm">{publicSettings?.logisticsContactEmail ?? "info@grainfood.de"}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
@@ -895,7 +594,7 @@ export default function LogisticsLandingPage() {
                   </div>
                   <div>
                     <p className="text-[#1a214f] font-semibold text-sm">Telefon</p>
-                    <p className="text-gray-500 text-sm">{logisticsContactPhone}</p>
+                    <p className="text-gray-500 text-sm">{publicSettings?.logisticsContactPhone ?? "+49 123 456789"}</p>
                   </div>
                 </div>
               </div>
