@@ -1,3 +1,6 @@
+import { NextResponse } from "next/server";
+import prisma from "@/lib/prisma";
+
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
@@ -49,8 +52,6 @@ export async function POST(request: Request) {
     );
   }
 }
-import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
 
 // GET - Hero Section verilerini getir
 export async function GET() {

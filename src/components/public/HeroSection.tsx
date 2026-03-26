@@ -98,27 +98,29 @@ export default function HeroSection() {
 
             {/* CTA Button and Description Row */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-8">
-              <a 
-                href={heroData.buttonLink}
-                className="group flex items-center gap-3 bg-[#868792] hover:bg-[#6e6f7a] text-white px-5 sm:px-6 py-3 rounded-full font-medium transition-all text-sm sm:text-base"
-              >
-                <span>{heroData.buttonText}</span>
-                <span className="w-8 h-8 rounded-full bg-white flex items-center justify-center group-hover:translate-x-1 transition-transform">
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </span>
-              </a>
+              {heroData.buttonLink && heroData.buttonLink.trim() !== "" && (
+                <a 
+                  href={heroData.buttonLink}
+                  className="group flex items-center gap-3 bg-[#868792] hover:bg-[#6e6f7a] text-white px-5 sm:px-6 py-3 rounded-full font-medium transition-all text-sm sm:text-base"
+                >
+                  <span>{heroData.buttonText}</span>
+                  <span className="w-8 h-8 rounded-full bg-white flex items-center justify-center group-hover:translate-x-1 transition-transform">
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </span>
+                </a>
+              )}
 
               <p className="text-gray-400 text-sm max-w-xs">
                 {heroData.description}
@@ -126,7 +128,7 @@ export default function HeroSection() {
             </div>
 
             {/* Social Links */}
-            <div className="flex flex-col gap-3 mt-4 lg:mt-8">
+            <div className="flex flex-row gap-3 mt-4 lg:mt-8">
               <SocialLink
                 icon="facebook"
                 href="https://facebook.com"
