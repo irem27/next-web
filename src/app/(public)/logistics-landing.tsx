@@ -302,6 +302,80 @@ export default function LogisticsLandingPage() {
   return (
     <div>
       <main>
+        {/* ========== HERO SECTION ========== */}
+        <section
+          className="relative min-h-[600px] sm:min-h-[700px] lg:min-h-[85vh] flex items-center px-4 sm:px-6 lg:px-10 overflow-hidden"
+          aria-label="Hero"
+        >
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <Image
+              src={hero?.backgroundImage || "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1920&q=80"}
+              alt="Logistics background"
+              fill
+              className="object-cover"
+              priority
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#1a214f]/90 via-[#1a214f]/70 to-[#1a214f]/40" />
+          </div>
+
+          {/* Content */}
+          <div className="relative z-10 max-w-[1320px] mx-auto w-full py-20 lg:py-28">
+            <div className="max-w-2xl">
+              {/* Badge */}
+              {hero?.badge && (
+                <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white/90 text-xs sm:text-sm font-medium px-4 py-2 rounded-full mb-6 border border-white/10">
+                  <span className="w-2 h-2 rounded-full bg-[#f06721] animate-pulse" />
+                  {hero.badge}
+                </span>
+              )}
+
+              {/* Title */}
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white mb-4 tracking-tight leading-[1.1]">
+                {hero?.title || "LOGI CRAFT"}
+              </h1>
+
+              {/* Subtitle */}
+              <p className="text-xl sm:text-2xl lg:text-3xl font-semibold text-[#f06721] mb-6">
+                {hero?.subtitle || "Crafting Your Logistics Success"}
+              </p>
+
+              {/* Description */}
+              <p className="text-white/70 text-sm sm:text-base lg:text-lg leading-relaxed mb-10 max-w-xl">
+                {hero?.description ||
+                  "Leading global logistics provider delivering comprehensive transport, freight, and supply chain solutions."}
+              </p>
+
+              {/* Buttons */}
+              <div className="flex flex-wrap gap-4">
+                {hero?.button1Text && (
+                  <Link
+                    href={hero.button1Link || "#services"}
+                    className="inline-flex items-center gap-2.5 bg-[#f06721] text-white px-8 py-3.5 rounded-full text-sm font-semibold hover:bg-[#d95a1b] transition-colors shadow-lg shadow-[#f06721]/30"
+                  >
+                    {hero.button1Text}
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </Link>
+                )}
+                {hero?.button2Text && (
+                  <Link
+                    href={hero.button2Link || "#solutions"}
+                    className="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-sm text-white px-8 py-3.5 rounded-full text-sm font-semibold hover:bg-white/20 transition-colors border border-white/20"
+                  >
+                    {hero.button2Text}
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </Link>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ========== MARQUEE DIVIDER ========== */}
         <div
           className="py-5 sm:py-6 overflow-hidden bg-[#EFF6FF]"
